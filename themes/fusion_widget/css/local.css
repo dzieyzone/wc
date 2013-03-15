@@ -1,0 +1,184 @@
+.block ul, .block ol {
+  margin-left: 0;
+}
+
+.block-nice_menus {
+  margin-bottom: 0;
+}
+#block-nice_menus-1 {
+  padding: 3px 0;
+}
+#block-views-other_blogs-block_1 .inner,
+#block-nice_menus-1 .inner {
+  margin: 0;
+}
+#block-views-other_blogs-block_1 .item-list ul li {
+  list-style: none;
+}
+#block-nice_menus-1 ul.nice-menu-down li {
+  border: 0;
+  background:none;
+}
+#block-nice_menus-1 ul.nice-menu-down li.last {
+  padding: 0;
+}
+#block-nice_menus-1 ul.nice-menu-down li.last a{
+  border-right: 0;
+}
+#block-nice_menus-1 ul.nice-menu a {
+  padding: 7px 12px;
+  font-size: 14px;
+  text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  text-shadow: #000 0.1em 0.1em 0.2em;
+  border-right: 1px solid #6c6c6c;
+}
+#block-nice_menus-1 ul.nice-menu a.active,
+#block-nice_menus-1 ul.nice-menu a:hover {
+  color: #E21414;
+}
+
+#block-block-18 .block-title {
+  font-size: 100%;
+  text-align: center;
+  padding: 5px;
+}
+
+#block-block-18 {
+  float:  right;
+  margin: 180px 35px 0 0;
+  color: #FFF;
+  font-size: 120%;
+}
+
+.block-google_admanager,
+.block-google_admanager .inner {
+  margin: 0;
+}
+
+.product-teaser {
+  text-align: center;
+}
+
+.product-teaser .teaser-image {
+  height: 100px;
+  margin: 5px 0;
+}
+
+.product-teaser .teaser-detail .list-price {
+  text-decoration: line-through;
+  font-size: 80%;
+  color: #CCC;
+}
+
+.product-teaser .teaser-detail h3.title {
+  font-size: 100%;
+  margin: 0;
+}
+
+#block-mod_widgetcity-user_widgetcity {
+  color: #FFFFFF;
+}
+
+.service-line-mail {
+  height: 65px;
+}
+
+.service-line-mail .mail {
+  padding: 10px 0 0 0;
+  display: block;
+  font-size: 22px;
+}
+
+.service-line-connect {
+  height: 35px;
+  padding: 7px 0 0 10px;
+}
+.service-line-connect .contact{
+  font-size: 16px;
+}
+.service-line-connect .like-us{
+  padding-left: 25px;
+}
+.service-line-terms {
+  font-size: 12px;
+  padding-left: 20px;
+}
+
+#block-search-0,
+#block-user-0 {
+  margin: 0;
+}
+#search-block-form #edit-search-block-form-1-wrapper{
+  width: 70px;
+  float: left;
+  margin: 5px 0 13px 0;
+  height: 16px;
+}
+#search-block-form .form-text {
+  border: 0;
+}
+#search-block-form .form-submit {
+  width: 30px;
+  float: left;
+  margin: 5px 0 0 0;
+  height: 20px;
+  font-size: 8px;
+}
+#user-login-form .form-text{
+  width: 120px;
+}
+#user-login-form label {
+  float: left;
+  width: 80px;
+}
+#user-login-form .form-item {
+  margin:5px 0 0 0;
+}
+#user-login-form .form-submit {
+  float: left;
+  margin-right: 5px;
+}
+.view-taxonomy-term .view-content .item-list li {
+  float: left;
+  margin: 0 5px 10px 5px;
+  width: 100px;
+  height: 200px;
+  list-style: none;
+  background: #FFFFFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.view-taxonomy-term .view-content .item-list li .product-teaser{
+  padding: 5px;
+}
+
+#pid-products-tags-tech-rumors .view-taxonomy-term .view-content .item-list li {
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  height: auto;
+}
+.showcase-ads {
+  float: left;
+  width: 300px;
+  height: 250px;
+  margin-right: 30px;
+}
+
+/*************/
+#nav-container {
+  list-style: none;
+}
+
+#image-nav li {
+  float: left;
+  margin-right: 5px;
+}
+
+#block-views-other_blogs-block_2 .views-row {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,552 @@
+
+/* Basic Typography & Colors
+-------------------------------------------------------------- */
+/* Add general site styling here for typography and background */
+body {
+  font-size: 75%;   /* also set in fusion_starter.info: settings[base-font-size] = font-size-12 */
+  font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+  line-height: normal;
+}
+
+/* Default link styles - separate a:visited for a different visited link style */
+a,
+a:link,
+a:visited {
+  /*color: #EC4332;*/
+  color: #e21414;
+}
+
+/* Hover/active link styles. Don't forget :focus for accessibility */
+a:hover,
+a:focus,
+a:active {
+  color: #000000;
+}
+
+#block-block-18 a:hover,
+#block-block-18 a:focus,
+#block-block-18 a:active {
+  color: #FFF4F4;
+}
+
+/* Specific Typography
+-------------------------------------------------------------- */
+#site-name {
+  font-size: 300%;
+  line-height: 150%;
+}
+
+.footer-message {
+  font-size: 90%;
+}
+
+#footer-message-text-inner {
+  margin: 0;
+  text-align: center;
+}
+/* HTML Elements
+-------------------------------------------------------------- */
+html.bg {
+  background: url('../images/bg-main.jpg');
+}
+
+/* Site Info
+-------------------------------------------------------------- */
+/* Wrapper around logo, site name, and slogan */
+.header-site-info {
+  margin-bottom: 0;
+  float: left;
+  width: 220px;
+}
+
+.header-group-inner .block-google_admanager {
+  float: left;
+  width: 740px;
+}
+
+.header-site-info span {
+  display: block;
+}
+
+/* Regions
+
+  Classes (.region-name) should always be used instead of IDs (#region-name) so
+  that Skinr styles can override them with a class later
+-------------------------------------------------------------- */
+
+/* All Regions
+-------------------------------------------------------------- */
+/* By default this wrapper is set to 100% width and centered -- override here to
+  narrow wrapper or align left or right */
+.page {
+}
+
+/* The 0 values here remove padding and spacing at the bottom of the page.
+  Remove to add a gap at the very bottom of the page */
+.page-inner {
+  border: 0;
+  margin-bottom: 60px;
+  margin-top: 80px;
+  padding: 0;
+}
+
+
+/* Header Regions
+-------------------------------------------------------------- */
+/* Header Top region to the bottom of Header region */
+/* For full-width header background, add background image/color here */
+#header-group-inner {
+  background: url('../images/bg-header.png') no-repeat;
+  padding: 10px 0;
+}
+
+#search-box {
+  margin: 0;
+  float: right;
+  width: 300px;
+}
+
+/* Style for individual dropdown menu items, add border-bottom for separators */
+.primary-menu-inner ul.sf-menu li li {
+  background-color: #fff;
+}
+
+
+/* Secondary menu
+-------------------------------------------------------------- */
+/* This menu usually appears in the header as a set of simple text links */
+.secondary-menu {
+}
+
+/* Styles for links */
+.secondary-menu-inner ul.links li a:link,
+.secondary-menu-inner ul.links li a:visited {
+  padding: 3px;
+}
+
+/*  Main Area (content + sidebars + preface bottom + postscript top)
+-------------------------------------------------------------- */
+/*
+#sidebar-first {
+  position: relative;
+}
+#sidebar-first-inner {
+  position: absolute;
+  width: 120px;
+}
+#sidebar-first-inner.fixed{
+  position: fixed;
+  top: 0;
+}
+
+#main-group {
+  float: right;
+}
+*/
+
+.page-inner {
+  -webkit-box-shadow:  0px 0px 83px 32px #000000;
+  box-shadow:  0px 0px 83px 32px #000000;
+  -moz-box-shadow: 0px 0px 83px 32px #000000;
+}
+
+.preface-top-inner,
+.main-inner,
+.footer-message-inner {
+  background: #E3E3E3;
+}
+.main-inner,
+.footer-message-inner {
+  padding-top: 10px;
+  /*border-left: 1px solid #737373;
+  border-right: 1px solid #737373;*/
+}
+.footer-message-inner {
+  padding: 10px 10px 0 10px;
+}
+
+.sidebar-first-inner {
+  padding-right: 20px;
+}
+
+.sidebar-last-inner {
+  padding-left: 25px;
+  text-align: center;
+}
+
+.header-banner-inner {
+  padding: 5px 0;
+}
+
+#footer-message-text {
+  border-top: 1px solid #A9A9A9;
+}
+.block-title-wrapper {
+  border-bottom: 1px solid #A9A9A9;
+  margin-bottom: 5px;
+}
+
+#footer-message-text-inner {
+  border-top: 1px solid #7D7D7D;
+}
+h2.block-title {
+  border-bottom: 1px solid #7D7D7D;
+}
+h2.block-title {
+  color: #c00000;
+  margin: 0;
+  padding-bottom: 5px;
+}
+/* Default node styles
+/-------------------------------------------------------------- */
+/* Change unpublished and preview colors for dark background themes */
+.node-unpublished {
+  background-color: #fff4f4;
+}
+.preview .node {
+  background-color: #ffffea;
+}
+/* Error that appears when a required form field is not filled out */
+.form-item input.error,
+.form-item textarea.error,
+.form-item select.error {
+  border: 1px solid #aa1144;
+}
+
+/* "New" text and required form field asterisk (default = red) */
+.marker,
+.form-required {
+  color: #aa1144;
+}
+
+/* Tab Menus
+/-------------------------------------------------------------- */
+#content-tabs {
+  background-color: transparent;
+  float: left; /* LTR */
+  margin: 20px 0;
+  padding: 0;
+}
+
+#content-tabs ul.primary,
+#content-tabs ul.secondary {
+  border-bottom: 1px solid #000;
+  clear: both;
+  float: left; /* LTR */
+  margin: 0;
+  padding: 0 10px;
+}
+
+#content-tabs ul.secondary {
+  border-bottom: 1px solid #555;
+  margin-top: 10px;
+  text-transform: lowercase;
+}
+
+#content-tabs ul.primary li,
+#content-tabs ul.secondary li {
+  border-style: none;
+  display: inline;
+  float: left; /* LTR */
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+}
+
+#content-tabs ul.primary li a:link,
+#content-tabs ul.primary li a:visited,
+#content-tabs ul.secondary li a:link,
+#content-tabs ul.secondary li a:visited {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  float: left; /* LTR */
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 6px 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#content-tabs ul.secondary li a:link,
+#content-tabs ul.secondary li a:visited {
+  color: #555;
+}
+
+#content-tabs ul.primary li a.active:link,
+#content-tabs ul.primary li a.active:visited {
+  border-bottom: 4px solid #000;
+  color: #555;
+  padding-bottom: 2px;
+}
+
+#content-tabs ul.secondary li a.active:link,
+#content-tabs ul.secondary li a.active:visited {
+  border-bottom: 4px solid #555;
+  color: #777;
+  padding-bottom: 2px;
+}
+
+#content-tabs ul.primary li a:hover,
+#content-tabs ul.primary li a:focus,
+#content-tabs ul.secondary li a:hover,
+#content-tabs ul.secondary li a:focus {
+    /*  */
+    
+  
+  border-bottom: 4px solid #777;
+  color: #777;
+  padding-bottom: 2px;
+}
+
+#content-inner-inner {
+  margin: 0;
+}
+
+/* Pagers
+-------------------------------------------------------------- */
+ul.pager {
+}
+
+ul.pager li {
+}
+
+ul.pager a,
+ul.pager li.pager-current {
+  border-color: #333;
+}
+
+ul.pager li.pager-current {
+  background-color: #777;
+  color: #fff;
+}
+
+ul.pager a:hover,
+ul.pager a:active,
+ul.pager a:focus {
+  background-color: #777;
+  border-color: #333;
+  color: #fff;
+}
+
+/* Forms
+/-------------------------------------------------------------- */
+/* Typography and backgrounds for all form buttons */
+form input.form-submit {
+  margin: 2px;
+  padding: 3px 5px;
+}
+
+/* Remove backgrounds and border on radios and checkboxes */
+.form-item .form-radio,
+.form-item .form-checkbox {
+  background: none;
+  border: none !important;
+}
+
+/* Tables
+-------------------------------------------------------------- */
+table {
+}
+
+/* Body of tables */
+tbody {
+  border-top: 1px solid #ccc;
+}
+
+/* Header of tables */
+thead th,
+th {
+  border-bottom: 3px solid #ccc;
+}
+
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Alternating row background styles */
+tr.even,
+tr.even td {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+tr.odd,
+tr.odd td {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+td.active {
+}
+
+tr.drag td,
+tr.drag-previous td {
+  color: #000;
+}
+
+
+/* Alternating styles for even/odd comments */
+.comments div.odd {
+  background-color: #fff;
+}
+
+.comments div.even {
+  background-color: #eee;
+}
+
+/* A special highlight style for a comment by the author of the node */
+.comments div.comment-by-author {
+  background-color: #ddd;
+}
+
+/* Comment signatures */
+.signature {
+  border-top: 1px solid #d6ddb9;
+}
+
+/* Profiles
+/-------------------------------------------------------------- */
+.profile .picture {
+  float: none;
+}
+
+/* Styles for sub-headings on user profiles */
+.profile dt {
+  background-color: #ccc;
+}
+
+
+/* Ubercart - catalog
+/-------------------------------------------------------------- */
+
+/* Horizontal list of subcategories in catalog */
+ul.uc-categories {
+}
+
+.uc-categories li a {
+  font-weight: bold;
+  padding: 0 5px 0 3px;
+}
+
+#cart-form-products table th {
+  border-bottom: 3px solid #dec2c3;
+}
+
+.block-slideshow h2.block-title {
+  padding: 0 0 0 130px
+}
+
+/* Theme overrides
+ * 
+ */
+ul.nice-menu-right,
+ul.nice-menu-left {
+  width: 100%;
+  z-index: 1000;
+}
+
+ul.nice-menu-right,
+ul.nice-menu-right ul {
+  border-top: 0;
+}
+ul.nice-menu-right li,
+ul.nice-menu-left li {
+  width: 100%;
+  border: 0;
+}
+
+ul.nice-menu-right ul ul,
+ul.nice-menu-right ul {
+  width: 120px;
+  left: 120px;
+}
+
+ul.nice-menu ul li {
+  width: 100%
+}
+
+.row, .nested, .block {
+  overflow: visible;
+}
+
+ul.nice-menu a {
+  padding: 0.3em 12px 0.3em 5px;
+  color: #000000;
+}
+
+ul.nice-menu-right li.menuparent,
+ul.nice-menu-right li li.menuparent {
+  background: url('../images/bg-menu-right.png') right center no-repeat;
+  border-bottom: none;
+}
+ul.nice-menu-right li.menuparent {
+  border-bottom: 1px solid #cfcfcf;
+}
+
+ul.nice-menu-right li li.menuparent {
+  background-color: #EEE;
+}
+
+#pid-home h1.title {
+  display: none;
+}
+
+/*
+ * Blocks styles
+ */
+.preface-top-inner .block-search,
+#block-nice_menus-1 {
+  background: url('../images/bg-nav.jpg') repeat-x;
+  height: 38px;
+}
+#block-nice_menus-1 .block-content{
+  padding-bottom: 5px;
+}
+#block-views-latest_products-block_1 .inner{
+  margin: 0;
+}
+.view-id-widget2012theme,
+.view-id-latest_products {
+  background: #FFF;
+  outline: 1px solid #9a9a9a;
+  -webkit-box-shadow:  0px 0px 10px 1px #a2a2a2;
+  box-shadow:  0px 0px 10px 1px #a2a2a2;
+}
+.view-id-widget2012theme .item-list ul {
+  margin:0;
+}
+.view-latest-products .view-content .item-list ul li{
+  list-style: none;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.view-latest-products .views-field-field-product-image-fid {
+  height: 120px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.view-details{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.header-image-payment, 
+#block-search-0 {
+  float: right;
+}
+
+.view-id-widget2012theme ul li.views-row {
+  float: left;
+  width: 115px;
+  list-style: none;
+}
+
+body.page-node.node-type-blog h1.title{
+  color: #C00000;
+}
