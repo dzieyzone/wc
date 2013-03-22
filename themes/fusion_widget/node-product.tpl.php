@@ -33,7 +33,7 @@
       <div id="product-cart" class="grid24-indent-1 grid24-6 nested">
           <?php 
           if ($phaseout):
-            echo '<strong class="phaseout">Phase Out</strong>';
+            echo '<strong class="phaseout">'. t('Phase Out') .'</strong>';
           else:
             if ($node->list_price > 0):
             echo $node->content['list_price']['#value'];
