@@ -100,20 +100,18 @@
         </div>
         <?php endif;?>
          -->
-
         <?php if ($links && !$teaser): ?>
         <div class="links clear">
           <?php print $links; ?>
         </div>
         <?php endif; ?>
-      </div><!-- /content -->
-  </div><!-- /inner -->
-
+      </div>
+  </div>
   <?php if ($node_bottom && !$teaser): ?>
   <div id="node-bottom" class="node-bottom row nested">
     <div id="node-bottom-inner" class="node-bottom-inner inner">
       <?php print $node_bottom; ?>
-    </div><!-- /node-bottom-inner -->
-  </div><!-- /node-bottom -->
+    </div>
+  </div>
   <?php endif; ?>
 </div>
