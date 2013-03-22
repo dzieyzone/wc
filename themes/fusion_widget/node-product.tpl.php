@@ -54,7 +54,7 @@
           endif;
           ?>
           <noscript>
-          <strong style="color:#FF0000;">You should enable javascript to show the correct price.</strong>
+          <strong style="color:#FF0000;"><?php print t('You should enable javascript to show the correct price.'); ?></strong>
           </noscript>
         </div>
     </div><!-- /product-group -->
