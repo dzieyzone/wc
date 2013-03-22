@@ -16,7 +16,7 @@
     </div><!-- /node-top -->
     <?php endif; ?>
     <div id="product-images" class="product-group clearfix">
-			<?php
+      <?php
       foreach ($node->field_product_image as $product_image):
        $images[] = theme('imagecache','50x50',$product_image['filepath']);
        $images_large[] = '<a rel="lightbox[imgs]" href="/'.$product_image['filepath'].'">'.theme('imagecache','product-display-wc',$product_image['filepath'],$product_image['data']['description']).'</a>';
@@ -32,27 +32,27 @@
       </div>
       <div id="product-cart" class="grid24-indent-1 grid24-6 nested">
           <?php 
-					if ($phaseout):
-						echo '<strong class="phaseout">Phase Out</strong>';
-					else:
-						if ($node->list_price > 0):
-						echo $node->content['list_price']['#value'];
-						endif;
-						echo $node->content['sell_price']['#value'];
-//						echo '<div style="display:none;">'. print_r($node->content, true) . '</div>';
+          if ($phaseout):
+            echo '<strong class="phaseout">Phase Out</strong>';
+          else:
+            if ($node->list_price > 0):
+            echo $node->content['list_price']['#value'];
+            endif;
+            echo $node->content['sell_price']['#value'];
+/*/            echo '<div style="display:none;">'. print_r($node->content, true) . '</div>';
             if ($node->field_multiply_page[0]['value'] || ($node->field_multiply_page[0]['value'] != 'http://widgetcity.multiply.com/') ):
               echo l('Checkout with Multiply',
-										   $node->field_multiply_page[0]['value'], 
-										   array('attributes'=> array('class'=>'checkout-button')
-						           )
-										 );
-						endif;
-						echo $node->content['add_to_cart']['#value'];
-						if ($node->field_freeshipping[0]['value']):
-						 echo '<div class="free-shipping" style="padding:5px 0;"><span style="color:red;">***</span><strong style="font-size:14px;">Free Shipping</strong></div>';
-						endif;
-					endif;
-					?>
+                       $node->field_multiply_page[0]['value'], 
+                       array('attributes'=> array('class'=>'checkout-button')
+                       )
+                     );
+            endif;//*/
+            echo $node->content['add_to_cart']['#value'];
+            if ($node->field_freeshipping[0]['value']):
+             echo '<div class="free-shipping" style="padding:5px 0;"><span style="color:red;">***</span><strong style="font-size:14px;">Free Shipping</strong></div>';
+            endif;
+          endif;
+          ?>
           <noscript>
           <strong style="color:#FF0000;">You should enable javascript to show the correct price.</strong>
           </noscript>
@@ -62,36 +62,36 @@
         <div id="content-body">
           <?php echo $node->content['body']['#value']; ?>
           <?php
-		if ($node->field_withtab[0]['value']):
-			echo '<div id="product-tabs">';
-			$count=1;
-			$tabs['tab1'] = array(
-						'title' => '',
-						'type' => 'freetext',
-						'text' => '',
-					);
-			do {
-				$field = 'field_detail_'.$count;
-				$tablabel = 'field_label_'.$count;
-				$ptab = $node->$field;
-				$plabel = $node->$tablabel;
-				if (!empty($plabel[0]['value'])):
-					$tabs['tab'.$count] = array(
-						'title' => t($plabel[0]['value']),
-						'type' => 'freetext',
-						'text' => check_markup($ptab[0]['value']),
-					);
-				endif;
-				$count++;
-				$field = 'field_detail_'.$count;  
-			} while (isset($node->$field));
-			$quicktabs1['qtid'] = '101';
-			$quicktabs1['tabs'] = $tabs;
-			$quicktabs1['style'] = 'Widget';
-			$quicktabs1['ajax'] = FALSE;
-			echo theme('quicktabs', $quicktabs1);
-			echo '</div>';
-		endif; ?>
+    if ($node->field_withtab[0]['value']):
+      echo '<div id="product-tabs">';
+      $count=1;
+      $tabs['tab1'] = array(
+            'title' => '',
+            'type' => 'freetext',
+            'text' => '',
+          );
+      do {
+        $field = 'field_detail_'.$count;
+        $tablabel = 'field_label_'.$count;
+        $ptab = $node->$field;
+        $plabel = $node->$tablabel;
+        if (!empty($plabel[0]['value'])):
+          $tabs['tab'.$count] = array(
+            'title' => t($plabel[0]['value']),
+            'type' => 'freetext',
+            'text' => check_markup($ptab[0]['value']),
+          );
+        endif;
+        $count++;
+        $field = 'field_detail_'.$count;  
+      } while (isset($node->$field));
+      $quicktabs1['qtid'] = '101';
+      $quicktabs1['tabs'] = $tabs;
+      $quicktabs1['style'] = 'Widget';
+      $quicktabs1['ajax'] = FALSE;
+      echo theme('quicktabs', $quicktabs1);
+      echo '</div>';
+    endif; ?>
         </div>
         <!-- /hide terms
         <?php if ($terms): ?>
