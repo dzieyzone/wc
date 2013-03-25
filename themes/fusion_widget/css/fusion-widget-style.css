@@ -152,7 +152,7 @@ html.bg {
 
 .preface-top-inner,
 .main-inner,
-.footer-message-inner {
+.footer-message-wrapper {
   background: #E3E3E3;
 }
 .main-inner,
@@ -160,6 +160,9 @@ html.bg {
   padding-top: 10px;
   /*border-left: 1px solid #737373;
   border-right: 1px solid #737373;*/
+}
+.footer-message-wrapper {
+  border-top: 1px solid #A9A9A9;
 }
 
 .sidebar-first-inner {
@@ -175,9 +178,6 @@ html.bg {
   padding: 5px 0;
 }
 
-#footer-message-text {
-  border-top: 1px solid #A9A9A9;
-}
 .block-title-wrapper {
   border-bottom: 1px solid #A9A9A9;
   margin-bottom: 5px;
