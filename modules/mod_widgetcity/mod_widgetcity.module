@@ -92,3 +92,16 @@ OUT;
   }
 }
 */
+
+function mod_widgetcity_feeds_parser_sources_alter(&$sources, $content_type) {
+  $sources['blog_img_src'] = array(
+    'name' => t('Images in blog wc feed'),
+    'description' => t('Images defined in blog wc feed item.'),
+    'callback' => '_mod_widgetcity_image_feed',
+  );
+}
+
+function _mod_widgetcity_image_feed(FeedsImportBatch $batch, $key) {
+  $item = $batch->currentItem();
+  return print_r($item, true);
+}
