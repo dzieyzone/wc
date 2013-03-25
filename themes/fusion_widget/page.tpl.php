@@ -114,14 +114,14 @@
       </div>
       <?php print theme('grid_row', $postscript_bottom, 'postscript-bottom', 'full-width'); ?>
       <div id="footer-message-wrapper" class="footer-message-wrapper full-width clearfix">
-        <?php print theme('grid_row', $footer_left, 'footer-left', 'nested', $footer_left_width); ?>
+        <?php print theme('grid_row', $footer_left, 'footer-left', 'nested', 'grid24-8'); ?>
         <div id="footer-message" class="footer-message row nested grid24-8">
           <div id="footer-message-inner" class="footer-message-inner inner clearfix">
             <?php print theme('grid_block', $footer, 'footer'); ?>
             <?php print theme('grid_block', $footer_message, 'footer-message-text'); ?>
           </div>
         </div>
-        <?php print theme('grid_row', $footer_right, 'footer-right', 'nested', $footer_right_width); ?>
+        <?php print theme('grid_row', $footer_right, 'footer-right', 'nested', 'grid24-8'); ?>
       </div>
     </div>
   </div>
