@@ -113,7 +113,7 @@
         </div>
       </div>
       <?php print theme('grid_row', $postscript_bottom, 'postscript-bottom', 'full-width'); ?>
-      <div id="footer-message-wrapper" class="footer-message-wrapper full-width">
+      <div id="footer-message-wrapper" class="footer-message-wrapper full-width clearfix">
         <?php print theme('grid_row', $footer_left, 'footer-left', 'nested', $footer_left_width); ?>
         <div id="footer-message" class="footer-message row nested grid24-8">
           <div id="footer-message-inner" class="footer-message-inner inner clearfix">
