@@ -156,13 +156,10 @@ html.bg {
   background: #E3E3E3;
 }
 .main-inner,
-.footer-message-inner {
+.footer-message-wrapper {
   padding-top: 10px;
   /*border-left: 1px solid #737373;
   border-right: 1px solid #737373;*/
-}
-.footer-message-inner {
-  padding: 10px 10px 0 10px;
 }
 
 .sidebar-first-inner {

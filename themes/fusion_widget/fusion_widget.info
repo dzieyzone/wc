@@ -20,6 +20,8 @@ regions[content_bottom] = content bottom
 regions[postscript_top] = postscript top
 regions[postscript_bottom] = postscript bottom
 regions[footer] = footer
+regions[footer_left] = footer left
+regions[footer_right] = footer right
 regions[node_top] = node top
 regions[node_bottom] = node bottom
 
@@ -42,6 +44,8 @@ settings[theme_font_size] = font-size-12
 settings[sidebar_layout] = sidebars-split
 settings[sidebar_first_width] = 4
 settings[sidebar_last_width] = 5
+settings[footer_left_width] = 8
+settings[footer_right_width] = 8
 
 ; Inherit Skinr styles from Fusion Core
 ;skinr[options][inherit_skins] = true
@@ -56,6 +60,8 @@ skinr[grid16-width][features][] =
 skinr[grid24-width][title] = Width (24 column grid)
 skinr[grid24-width][type] = select
 skinr[grid24-width][features][] = block
+skinr[grid24-width][options][0][label] = NONE
+skinr[grid24-width][options][0][class] = grid24-none
 skinr[grid24-width][options][1][label] = 01 unit wide (40px/4.1%)
 skinr[grid24-width][options][1][class] = grid24-1
 skinr[grid24-width][options][2][label] = 02 units wide (80px/8.3%)
