@@ -103,5 +103,5 @@ function mod_widgetcity_feeds_parser_sources_alter(&$sources, $content_type) {
 
 function _mod_widgetcity_image_feed(FeedsImportBatch $batch, $key) {
   $item = $batch->currentItem();
-  return $item['img-url'];
+  return print_r($item, true);
 }
