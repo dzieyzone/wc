@@ -46,7 +46,9 @@
  */
 ?>
 <div class="search-image>
-  <?php print $image; ?>
+  <?php if ($image):
+  print theme('imagecache', 'w90x90', $image['filepath'], $title, $image['data']['description']); 
+  endif;?>
 </div>
 <div class="search-detail">
   <dt class="title">

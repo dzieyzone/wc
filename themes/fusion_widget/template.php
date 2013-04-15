@@ -116,7 +116,6 @@ function fusion_widget_preprocess_search_result(&$vars) {
   $vars['image'] = '';
   if ($vars['result']['node']->type == 'product') {
     $node = node_load($vars['result']['node']->nid);
-    $image = $node->field_product_image[0];
-    $vars['image'] = theme('imagecache', 'w90x90', $image['filepath'],$vars['title'], $image['data']['description']);
+    $vars['image'] = $node->field_product_image[0];
   }
 }
