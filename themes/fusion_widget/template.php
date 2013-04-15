@@ -112,11 +112,11 @@ function fusion_widget_preprocess_views_view(&$variables) {
  * @see search-result.tpl.php
  */
 function fusion_widget_preprocess_search_result(&$vars) {
-	// Add node object to result, so we can display imagefield images in results.
-	$vars['image'] = '';
-	if ($vars['result']['node']->type == 'product') {
-		$node = node_load($vars['result']['node']->nid);
-		$image = $node->field_product_image[0];
-		$vars['image'] = theme('imagecache', 'w90x90', $product_image['filepath'],$vars['title'], $image['data']['description']);
-	}
+  // Add node object to result, so we can display imagefield images in results.
+  $vars['image'] = '';
+  if ($vars['result']['node']->type == 'product') {
+    $node = node_load($vars['result']['node']->nid);
+    $image = $node->field_product_image[0];
+    $vars['image'] = theme('imagecache', 'w90x90', $image['filepath'],$vars['title'], $image['data']['description']);
+  }
 }
