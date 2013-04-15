@@ -98,6 +98,22 @@ function fusion_wcm_preprocess_search_block_form(&$variables) {
   $variables['search']['search_block_form'] = drupal_render($variables['form']['search_block_form']);
   $variables['search_form'] = implode($variables['search']);
 }
+
+<?php
+/**
+ * Process variables for search-result.tpl.php.
+ *
+ * @see search-result.tpl.php
+ */
+function fusion_wcm_preprocess_search_result(&$vars) {
+  // Add node object to result, so we can display imagefield images in results.
+	$vars['image'] = '';
+  if ($vars['result']['node']->type == 'product') {
+    $node = node_load($vars['result']['node']->nid);
+    $image = $node->field_product_image[0];
+    $vars['image'] = theme('imagecache', 'product-front-list', $product_image['filepath'],$vars['title'], $image['data']['description']);
+  }
+}
 /*
 function fusion_wcm_preprocess_views_view(&$variables) {
   if ($variables['name'] == 'front'){
