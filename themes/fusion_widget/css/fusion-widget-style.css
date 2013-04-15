@@ -546,7 +546,9 @@ body.page-node.node-type-blog h1.title{
   color: #C00000;
 }
 
-
+.search-results .search-result {
+  margin-bottom: 5px;
+}
 .search-result .search-image{
   float: left;
   width: 100px;
