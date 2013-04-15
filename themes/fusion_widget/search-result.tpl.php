@@ -45,18 +45,20 @@
  * @see template_preprocess_search_result()
  */
 ?>
-<div class="search-image">
-  <?php if ($image):
-  print theme('imagecache', 'w90x90', $image['filepath'], $title, $image['data']['description']); 
-  endif;?>
-</div>
-<div class="search-detail">
-  <dt class="title">
-    <a href="<?php print $url; ?>"><?php print $title; ?></a>
-  </dt>
-  <dd>
-    <?php if ($snippet) : ?>
-      <p class="search-snippet"><?php print $snippet; ?></p>
-    <?php endif; ?>
-  </dd>
+<div class="search-result clearfix">
+  <div class="search-image">
+    <?php if ($image):
+    print theme('imagecache', 'w90x90', $image['filepath'], $title, $image['data']['description']); 
+    endif;?>
+  </div>
+  <div class="search-detail">
+    <dt class="title">
+      <a href="<?php print $url; ?>"><?php print $title; ?></a>
+    </dt>
+    <dd>
+      <?php if ($snippet) : ?>
+        <p class="search-snippet"><?php print $snippet; ?></p>
+      <?php endif; ?>
+    </dd>
+  </div>
 </div>

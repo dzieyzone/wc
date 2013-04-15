@@ -545,3 +545,12 @@ ul.nice-menu-right li li.menuparent {
 body.page-node.node-type-blog h1.title{
   color: #C00000;
 }
+
+
+.search-result .search-image{
+  float: left;
+  width: 100px;
+}
+.search-result .search-detail dd{
+  margin-left: 0;
+}
