@@ -45,7 +45,7 @@
  * @see template_preprocess_search_result()
  */
 ?>
-<div class="search-image>
+<div class="search-image">
   <?php if ($image):
   print theme('imagecache', 'w90x90', $image['filepath'], $title, $image['data']['description']); 
   endif;?>
