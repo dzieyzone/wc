@@ -1,3 +1,10 @@
+<div class="share-this">
+  <span class='st_fbrec_hcount' displayText='Facebook Recommend'></span>
+  <span class='st_twitter_hcount' displayText='Tweet'></span>
+  <span class='st_googleplus_hcount' displayText='Google +'></span>
+  <span class='st_sharethis_hcount' displayText='ShareThis'></span>
+  <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+</div>
 <div id="node-<?php print $node->nid; ?>" class="node clear-block <?php print $node_classes; ?>">
   <div class="inner">
     <?php if ($page == 0): ?>
@@ -31,15 +38,6 @@
         </div>
       </div>
       <div id="product-cart" class="grid24-indent-1 grid24-6 nested">
-        <div class="share-this">
-          <span class='st_facebook_hcount' displayText='Facebook'></span>
-          <span class='st_fbrec_hcount' displayText='Facebook Recommend'></span>
-          <span class='st_twitter_hcount' displayText='Tweet'></span>
-          <span class='st_googleplus_hcount' displayText='Google +'></span>
-          <span class='st_sharethis_hcount' displayText='ShareThis'></span>
-          <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-          <span class='st_email_hcount' displayText='Email'></span>
-        </div>
         <?php 
           if ($phaseout):
             echo '<strong class="phaseout">'. t('Phase Out') .'</strong>';
