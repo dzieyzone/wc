@@ -187,3 +187,8 @@
 .share-this {
   padding: 0 5px;
 }
+
+
+#slideshow-container #slideshow {
+  text-align: center;
+}
