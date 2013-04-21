@@ -177,6 +177,7 @@
 #image-nav li {
   float: left;
   margin-right: 5px;
+  list-style: none;
 }
 
 #block-views-other_blogs-block_2 .views-row {

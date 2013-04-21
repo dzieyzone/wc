@@ -31,7 +31,16 @@
         </div>
       </div>
       <div id="product-cart" class="grid24-indent-1 grid24-6 nested">
-          <?php 
+        <div class="share-this">
+          <span class='st_facebook_hcount' displayText='Facebook'></span>
+          <span class='st_fbrec_hcount' displayText='Facebook Recommend'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_googleplus_hcount' displayText='Google +'></span>
+          <span class='st_sharethis_hcount' displayText='ShareThis'></span>
+          <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+          <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+        <?php 
           if ($phaseout):
             echo '<strong class="phaseout">'. t('Phase Out') .'</strong>';
           else:
@@ -52,11 +61,11 @@
              echo '<div class="free-shipping" style="padding:5px 0;"><span style="color:red;">***</span><strong style="font-size:14px;">Free Shipping</strong></div>';
             endif;
           endif;
-          ?>
-          <noscript>
+        ?>
+        <noscript>
           <strong style="color:#FF0000;"><?php print t('You should enable javascript to show the correct price.'); ?></strong>
-          </noscript>
-        </div>
+        </noscript>
+      </div>
     </div>
     <div class="content clearfix">
         <div id="content-body">
