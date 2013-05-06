@@ -1,0 +1,13 @@
+;
+;  Copyright (c) 2011. All rights reserved Payeasy
+;
+;  Tweaked by: The Chosen One
+;  
+;
+;
+name = PayEasy
+description = Enable to process payments using PayEasy by Mozcom
+dependencies[]= uc_payment
+package = Ubercart - payment
+core = 6.x
+version = "6.x-1.0"
