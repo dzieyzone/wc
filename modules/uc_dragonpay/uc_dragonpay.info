@@ -1,0 +1,6 @@
+name = DragonPay
+description = Enable to process payments using Dragon Pay
+dependencies[]= uc_payment
+package = Ubercart - payment
+core = 6.x
+version = "6.x-1.0"

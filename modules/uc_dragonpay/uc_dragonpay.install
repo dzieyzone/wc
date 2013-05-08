@@ -1,0 +1,18 @@
+<?php
+/**
+ * Implements hook_install().
+ */
+function uc_dragonpay_install() {
+  $t = get_t();
+  db_query("INSERT INTO {uc_order_statuses} (order_status_id, title, state, weight, locked) VALUES ('dragonpay_pending', '%s', 'payment_received', 7, 1);", $t('DragonPay Pending'));
+  db_query("INSERT INTO {uc_order_statuses} (order_status_id, title, state, weight, locked) VALUES ('dragonpay_checkout', '%s', 'in_checkout', 7, 1);", $t('DragonPay Checkout'));
+  db_query("INSERT INTO {uc_order_statuses} (order_status_id, title, state, weight, locked) VALUES ('dragonpay_received', '%s', 'payment_received', 7, 1);", $t('Payment Received'));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function uc_dragonpay_uninstall() {
+  db_query("DELETE FROM {variable} WHERE name LIKE 'uc_dragonpay_%%'");
+  db_query("DELETE FROM {uc_order_statuses} WHERE order_status_id LIKE 'dragonpay_%%'");
+}
