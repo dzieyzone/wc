@@ -11,18 +11,18 @@ define('DRAGON_LIVE_URL', 'https://secure.dragonpay.ph');
  */
 function uc_dragonpay_menu() {
   $items = array();
-	$items['cart/dragonpay/complete'] = array(
-		'title' => t('Order complete'),
-		'page callback' => 'uc_dragonpay_complete',
-		'access callback' => 'uc_dragonpay_completion_access',
-		'type' => MENU_CALLBACK,
-	);
-	$items['cart/dragonpay/finalize'] = array(
-		'title' => t('Order complete'),
-		'page callback' => 'uc_dragonpay_finalize',
-		'access arguments' => array('access content'),
-		'type' => MENU_CALLBACK,
-	);
+  $items['cart/dragonpay/complete'] = array(
+    'title' => t('Order complete'),
+    'page callback' => 'uc_dragonpay_complete',
+    'access callback' => 'uc_dragonpay_completion_access',
+    'type' => MENU_CALLBACK,
+  );
+  $items['cart/dragonpay/finalize'] = array(
+    'title' => t('Order complete'),
+    'page callback' => 'uc_dragonpay_finalize',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
 
   return $items;
 }
@@ -53,32 +53,32 @@ function uc_dragonpay_form_alter(&$form, $form_state, $form_id) {
     $order = uc_order_load($order_id);
 
     if ($order->payment_method == 'dragonpay') {
-			_dragonpay_set_transid( $order->order_id );
-			$country = uc_get_country_data(array('country_id' => $order->billing_country));
-			if ($country === FALSE) {
-				$country = array(0 => array('country_iso_code_2' => 'PH'));
-			}
-			$billzone = (is_numeric($order->billing_zone)) ? uc_zone_get_by_id($order->billing_zone) : '';
-			$billinfo = array(
-												'txnId'=> _dragonpay_get_transid(),
-												'merchantId'=> variable_get('uc_dragonpay_mid', ''),
-												'firstName'=>$order->billing_first_name,
-												'lastName'=>$order->billing_last_name,
-												'address1'=> $order->billing_street1,
-												'address2'=> $order->billing_street2,
-												'city'=>$order->billing_city,
-												'state'=>$billzone,
-												'country'=>$country[0]['country_iso_code_2'],
-												'zipCode'=>$order->billing_postal_code,
-												'telNo'=>$order->billing_phone,
-												'email'=> $order->primary_email,
-												);
-			$params = http_build_query($billinfo, '', '&');
-			$request_headers = array('Content-Type' => 'application/x-www-form-urlencoded');
-		  $sendurl = _dragonpay_post_url('bill');
-			$method = 'GET';
-			$retry = 3;
-			$http_result = drupal_http_request($sendurl, $request_headers, $method, $params, $retry);
+      _dragonpay_set_transid( $order->order_id );
+      $country = uc_get_country_data(array('country_id' => $order->billing_country));
+      if ($country === FALSE) {
+        $country = array(0 => array('country_iso_code_2' => 'PH'));
+      }
+      $billzone = (is_numeric($order->billing_zone)) ? uc_zone_get_by_id($order->billing_zone) : '';
+      $billinfo = array(
+                        'txnId'=> _dragonpay_get_transid(),
+                        'merchantId'=> variable_get('uc_dragonpay_mid', ''),
+                        'firstName'=>$order->billing_first_name,
+                        'lastName'=>$order->billing_last_name,
+                        'address1'=> $order->billing_street1,
+                        'address2'=> $order->billing_street2,
+                        'city'=>$order->billing_city,
+                        'state'=>$billzone,
+                        'country'=>$country[0]['country_iso_code_2'],
+                        'zipCode'=>$order->billing_postal_code,
+                        'telNo'=>$order->billing_phone,
+                        'email'=> $order->primary_email,
+                        );
+      $params = http_build_query($billinfo, '', '&');
+      $request_headers = array('Content-Type' => 'application/x-www-form-urlencoded');
+      $sendurl = _dragonpay_post_url('bill');
+      $method = 'GET';
+      $retry = 3;
+      $http_result = drupal_http_request($sendurl, $request_headers, $method, $params, $retry);
       unset($form['submit']);
       $form['#prefix'] = '<table style="display: inline; padding-top: 1em;"><tr><td>';
       $form['#suffix'] = '</td><td>'. drupal_get_form('uc_dragonpay_form', $order) .'</td></tr></table>';
@@ -96,15 +96,15 @@ function uc_dragonpay_form_alter(&$form, $form_state, $form_id) {
  */
 function uc_dragonpay_payment_method() {
   $path = base_path() . drupal_get_path('module', 'uc_dragonpay');
-  $title = variable_get('uc_dragonpay_method_title', t('DragonPay'));
-  $title .= '<br /><img src="'. $path .'/peccpp.jpg" style="position: relative; left: 2.5em;">';
+  $path = base_path() . drupal_get_path('module', 'uc_dragonpay');
+  $title .='<img class="dragonpay-gif" src="'. $path .'/logo_small_DRAGONPAY.gif" style="position: relative; top: 5px;" />';
 
   $methods[] = array(
     'id' => 'dragonpay',
     'name' => t('DragonPay'),
     'title' => $title,
-    'review' => ($_SESSION['pay_method'] == 'WL') ? t('DragonPay Wallet') : t('DragonPay Direct'),
-    'desc' => t('Redirect to DragonPay to pay by Wallet or Direct payment type.'),
+    'review' => t('DragonPay Payment Gateway'),
+    'desc' => t('Redirect to DragonPay.'),
     'callback' => 'uc_payment_method_dragonpay',
     'weight' => 3,
     'checkout' => TRUE,
@@ -125,35 +125,15 @@ function uc_dragonpay_payment_method() {
 function uc_payment_method_dragonpay($op, &$arg1) {
   switch ($op) {
     case 'cart-details':
-      $methods = variable_get('uc_dragonpay_checkout_type', array());
-      if ($methods['wallet'] !== 0 || $methods['direct'] !== 0) {
-        if ($methods['wallet'] !== 0) {
-          $sel[1] = ' selected="selected"';
-        }
-        else {
-          $sel[2] = ' selected="selected"';
-        }
-        unset($_SESSION['pay_method']);
-        $details = '<div class="form-item"><b>'. t('Select your payment type:')
-                  .'</b> <select name="pay_method" class="form-select" id="edit-pay-method">';
-        if ($methods['wallet'] !== 0) {
-          $details .= '<option value="WL"'. $sel[1] .'>'. t('Wallet (PHP)') .'</option>';
-        }
-        if ($methods['direct'] !== 0) {
-          $details .= '<option value="DC"'. $sel[2] .'>'. t('Direct/Credit Cards/Paypal (USD)') .'</option>';
-        }
-        $details .= '</select></div>';
-      }
-      else {
-        $details = '<strong>'. t('Couldn\'t retrieve any payment types for DragonPay. Please contact store owner.') .'</strong>';
-        unset($_SESSION['pay_method']);
-      }
+      unset($_SESSION['pay_method']);
+      $path = base_path() . drupal_get_path('module', 'uc_dragonpay');
+    $img ='<img class="dragonpay-gif" src="'. $path .'/logo_small_DRAGONPAY.gif" style="position: relative; top: 5px;" />';
+      $details = '<div class="form-item">'. $img . '<input type="hidden" name="pay_method" id="edit-dragonpay-pay_method" value="PHP"></div>';
       return $details;
 
     case 'cart-process':
       $_SESSION['pay_method'] = $_POST['pay_method'];
       return;
-
     case 'settings':
       $form['uc_dragonpay_mid'] = array(
         '#type' => 'textfield',
@@ -162,11 +142,11 @@ function uc_payment_method_dragonpay($op, &$arg1) {
         '#default_value' => variable_get('uc_dragonpay_mid', ''),
         '#size' => 16,
       );
-      $form['uc_dragonpay_pass'] = array(
+      $form['uc_dragonpay_key'] = array(
         '#type' => 'textfield',
         '#title' => t('Password'),
         '#description' => t('Your DragonPay merchant account password.'),
-        '#default_value' => variable_get('uc_dragonpay_pass', ''),
+        '#default_value' => variable_get('uc_dragonpay_key', ''),
         '#size' => 16,
       );
       $form['uc_dragonpay_demo'] = array(
@@ -196,16 +176,6 @@ function uc_payment_method_dragonpay($op, &$arg1) {
         '#description' => t('Used in generating transaction id.'),
         '#default_value' => variable_get('uc_dragonpay_prefix', 'WEB'),
       );
-      $form['uc_dragonpay_checkout_type'] = array(
-        '#type' => 'checkboxes',
-        '#title' => t('DragonPay checkout types'),
-        '#description' => t('Enable the supported payment type(s) for your DragonPay merchant account.'),
-        '#options' => array(
-          'wallet' => t('Wallet (PHP)'),
-          'direct' => t('Direct/Credit Cards/Paypal (USD)'),
-        ),
-        '#default_value' => variable_get('uc_dragonpay_checkout_type', array()),
-      );
       return $form;
   }
 }
@@ -214,21 +184,26 @@ function uc_payment_method_dragonpay($op, &$arg1) {
 function uc_dragonpay_form($form_state, $order) {
 
   $txn_id = _dragonpay_get_transid();
-	$txn_amt = uc_currency_format($order->order_total, FALSE, FALSE, '.');
-	$txn_cur = ($_SESSION['pay_method'] == 'WL') ? 'PHP' : 'USD';//variable_get('uc_currency_code', 'USD');
-  $digest = $txn_amt .':'. $txn_id .':'. variable_get('uc_dragonpay_mid', '') .':'. variable_get('uc_dragonpay_pass', '') .':'. $txn_cur;
+  $txn_amt = uc_currency_format($order->order_total, FALSE, FALSE, '.');
+  $txn_cur = 'PHP';
 
   $data = array(
-    'amount' => $txn_amt,
-    'txnid' => $txn_id,
-    'description' => variable_get('uc_store_name', ''),
     'merchantid' => variable_get('uc_dragonpay_mid', ''),
+    'txnid' => $txn_id,
+    'amount' => $txn_amt,
     'ccy' => $txn_cur,
-    'digest' => sha1($digest),
+    'description' => variable_get('uc_store_name', ''),
+    'email' => $order->primary_email,
   );
 
+  $digest = $data;
+  $digest['key'] = variable_get('uc_dragonpay_key', '');
+  $pdigest = implode(':', $digest);
+
+  $data['digest'] = sha1($pdigest);
+
   $form['#method'] = 'get';
-  $form['#action'] = _dragonpay_post_url();//$_SESSION['pay_method']);
+  $form['#action'] = _dragonpay_post_url();
 
   foreach ($data as $name => $value) {
     $form[$name] = array('#type' => 'hidden', '#value' => $value);
@@ -244,111 +219,141 @@ function uc_dragonpay_form($form_state, $order) {
 
 function uc_dragonpay_complete($cart_id = 0) {
   $txnid = 0;
-	if (isset($_GET['txnid'])){
-		list(,,$txnid) = explode('_', check_plain($_GET['txnid']));
-		watchdog('uc_dragonpay',
-						 t('Receiving new order notification for order !order_id, DragonPay transaction id:!dragonpaytransid.',
-							 array('!order_id' => check_plain($txnid),
-										 '!dragonpaytransid'=> check_plain($_GET['txnid'])
-										 )
-							 )
-						 );
-	}
-	
+  
+  if (isset($_GET['txnid'])){
+    list(,,$txnid) = explode('_', check_plain($_GET['txnid']));
+  watchdog('uc_dragonpay',
+    t('Receiving new order notification for order !order_id, DragonPay transaction id:!dragonpaytransid.',
+      array('!order_id' => check_plain($txnid),
+        '!dragonpaytransid'=> check_plain($_GET['txnid'])
+        )
+      )
+  );
+  }
+  
+  //load order
   $order = uc_order_load(check_plain($txnid));
   //check if order exist or order is not in checkout
   if ( $order === FALSE || check_plain($_GET['result']) == 'failure' || uc_order_status_data($order->order_status, 'state') != 'in_checkout') {
-	  if (check_plain($_GET['result']) == 'failure') {
-      drupal_set_message(t('An error has occurred during payment due to the following reason:'). t(check_plain($_GET['reason'])), 'error');
-			//uc_order_update_status($order->order_id, 'dragonpay_checkout');
+    if (check_plain($_GET['result']) == 'failure') {
+      drupal_set_message(
+        t('An error has occurred during payment due to the following reason:') . t(check_plain($_GET['reason'])), 'error');
+      //uc_order_update_status($order->order_id, 'dragonpay_checkout');
     }
     else {
       drupal_set_message(t('An error has occurred during payment. Please contact us to ensure your order has submitted.'), 'error');
-			//uc_order_update_status($order->order_id, 'dragonpay_checkout');
+    //uc_order_update_status($order->order_id, 'dragonpay_checkout');
     }
     //$_SESSION['cart_order'] = NULL;
     //unset($_SESSION['cart_order']);
     drupal_goto('cart');
   }
-	
-	//if live site
-  if (!variable_get('uc_dragonpay_demo', TRUE)) {
-    $rdigest = check_plain($_GET['txnid']) .':'. check_plain($_GET['result']) .':'. variable_get('uc_dragonpay_mid', '');
-    $chk_rdigest = sha1($rdigest);
-
-    if ($chk_rdigest != check_plain($_GET['digest'])) {
-      uc_order_comment_save($order->order_id, 0, t('Attempted unverified DragonPay completion for this order.'), 'admin');
+  
+  //check the integrity of the message
+  $params = array(
+    'txnid' => '',
+    'refno' => '',
+    'status' => '',
+    'message' => ''
+  );
+  foreach ($params as $id=>$param){
+    if (isset($_GET[$id])){
+      $params[$id] = trim($_GET[$id]);
     }
   }
-  /*
-  $rname = explode(' ', check_plain($_GET['clientname']));
-  $raddress = explode(' ', check_plain($_GET['clientaddress']));
-  if ($raddress[count($raddress)-3] == 'NCR') {
-    $raddress[count($raddress)-3] = 'Metro Manila';
-  }
-  $raddress_street = implode(' ', array_slice($raddress, 0, count($raddress)-4));
+  $params['digest'] = variable_get('uc_dragonpay_key', '');
+  $digest = implode(':', $params);
 
-  $order->billing_first_name = $rname[0];
-  $order->billing_last_name = $rname[1];
-  $order->billing_street1 = $raddress_street;
-  $order->city = $raddress[count($raddress)-4];
-  $order->billing_zone = $raddress[count($raddress)-3];
-  $order->billing_country = $raddress[count($raddress)-2];
-  $order->billing_postal_code = $raddress[count($raddress)-1];
-  $order->billing_phone = check_plain($_GET['clientphone']);
+  $chk_rdigest = sha1($digest);
 
-  $zone_id = db_result(db_query("SELECT zone_id FROM {uc_zones} WHERE zone_name LIKE '%s'", $raddress[count($raddress)-3]));
-  if (!empty($zone_id)) {
-    $order->billing_zone = $zone_id;
+  if ($chk_rdigest != check_plain($_GET['digest'])) {
+    uc_order_comment_save($order->order_id, 0, t('Attempted unverified DragonPay completion for this order.'), 'admin');
   }
   else {
-    $order->billing_zone = NULL;
+    $dragonpay_result = (isset($_GET['status'])) ? strtolower(check_plain($_GET['status'])) : 'none';
+    switch ($dragonpay_result){
+      case 's': //transaction successful
+        $comment = t('DragonPay Reference Number: !refnum.\nMessage: !msg',
+          array('!refnum' => check_plain($_GET['refno']),
+            '!msg'=> check_plain($_GET['message'])
+          )
+        );
+        uc_payment_enter($order->order_id, 'dragonpay', $order->order_total, 0, NULL, $comment);
+        uc_order_comment_save(
+          $order->order_id,
+          0,
+          t('Payment of !amount !currency submitted through DragonPay.\nMessage: !msg',
+            array( '!amount' => uc_currency_format($order->order_total, FALSE, FALSE, '.'),
+              '!currency' => variable_get('uc_currency_code', ''),
+              '!msg'=> check_plain($_GET['message'])
+           )
+          ),
+          'order',
+          'payment_received');
+        uc_cart_empty($txnid);// Empty that cart...
+        uc_order_save($order);// Save changes to order without it's completion (it will be on finalization step)
+        $url = 'cart/dragonpay/finalize/'. $order->order_id; //only redirect if successful
+        $output = '<script type="text/javascript">window.location = "'. url($url) .'";</script>';// Javascript redirect on the finalization page.
+        $output .= l(t('Click to complete checkout.'), $url);// Text link for users without Javascript enabled.
+        while (strlen($output) < 255) {// DragonPay needs page larger than 255 characters to display.
+          $output .= '&nbsp;';
+        }
+        print $output;
+        exit();
+      break;
+      default:
+    //case 'p': //pending status code goes here
+      $dragonpay_err_code = array(
+        's' => 'Success',
+        'f' => 'Failure',
+        'p' => 'Pending',
+        'u' => 'Unknown',
+        'r' => 'Refund',
+        'k' => 'Chargeback',
+        'v' => 'Void',
+        'a' => 'Authorized',
+      );
+      
+      $comment = t(
+        'DragonPay Reference Number: !refnum.',
+        array('!refnum' => check_plain($_GET['refno']))
+      );
+      uc_payment_enter($order->order_id, 'dragonpay', $order->order_total, 0, NULL, $comment);
+      if ($dragonpay_result == 'p') {
+          $payment_msg = t('Payment is in pending status. Please settle the amount to complete the purchase. Details: !detail',
+          array('!detail'=> check_plain($_GET['message']))
+        );
+        $user_msg = t("Please complete your payment inorder to complete the purchase. <br /> Reference: !msg",
+          array('!msg'=> check_plain($_GET['message']))
+        );
+      }
+      else {
+        $payment_msg = t('Payment unsuccessful.\n Code: !code \nDetails: !detail',
+        array(
+          '!code' => $dragonpay_err_code[$dragonpay_result],
+          '!detail'=> check_plain($_GET['message']))
+        );
+        $user_msg = t("Error occured while processing your payment. <br />Code: !code<br /> Details: !msg",
+          array(
+            '!code' => $dragonpay_err_code[$dragonpay_result],
+            '!msg'=> check_plain($_GET['message'])
+          )
+        );
+      } 
+      
+      uc_order_comment_save(
+        $order->order_id,
+        0,
+        $payment_msg,
+        'admin'
+      );
+      uc_cart_empty($txnid);// Empty that cart...
+      uc_order_save($order);
+      uc_order_update_status($order->order_id, 'dragonpay_pending');
+      drupal_set_message($user_msg, 'error');
+      drupal_goto('user/'. $order->uid .'/orders');
+    }
   }
-
-  $country_id = db_result(db_query("SELECT country_id FROM {uc_countries} WHERE country_name LIKE '%s'", $raddress[count($raddress)-2]));
-  if (!empty($country_id)) {
-    $order->billing_country = $country_id;
-  }
-  else {
-    $order->billing_country = NULL;
-  }
-  */
-  if (strtolower(check_plain($_GET['clientemail'])) !== strtolower($order->primary_email)) {
-    uc_order_comment_save($order->order_id, 0, t('Customer used a different e-mail address during payment: !email', array('!email' => check_plain($_GET['clientemail']))), 'admin');
-  }
-	
-	$dragonpay_result = (isset($_GET['result']))? strtolower(check_plain($_GET['result'])) : 'none';
-	switch ($dragonpay_result){
-		case 'success'://transaction successful
-			$comment = t('DragonPay Reference Number: !refnum.', array('!refnum' => check_plain($_GET['txnid'])));
-			uc_payment_enter($order->order_id, 'dragonpay', $order->order_total, 0, NULL, $comment);
-			uc_order_comment_save($order->order_id, 0, t('Payment of !amount !currency submitted through DragonPay.', array('!amount' => uc_currency_format($order->order_total, FALSE, FALSE, '.'), '!currency' => variable_get('uc_currency_code', ''))), 'order', 'payment_received');
-			uc_cart_empty($txnid);// Empty that cart...
-			uc_order_save($order);// Save changes to order without it's completion (it will be on finalization step)
-			$url = 'cart/dragonpay/finalize/'. $order->order_id; //only redirect if successful
-			$output = '<script type="text/javascript">window.location = "'. url($url) .'";</script>';// Javascript redirect on the finalization page.
-			$output .= l(t('Click to complete checkout.'), $url);// Text link for users without Javascript enabled.
-			while (strlen($output) < 255) {// DragonPay needs page larger than 255 characters to display.
-				$output .= '&nbsp;';
-			}
-			print $output;
-			exit();
-			break;
-		case 'pending': //pending status code goes here
-			$comment = t('DragonPay Reference Number: !refnum.', array('!refnum' => check_plain($_GET['txnid'])));
-			uc_payment_enter($order->order_id, 'dragonpay', $order->order_total, 0, NULL, $comment);
-			uc_order_comment_save($order->order_id,
-														0,
-														t('Payment is in pending status. Please settle the amount to complete the purchase.'),
-														'admin'
-													 );
-			uc_cart_empty($txnid);// Empty that cart...
-			uc_order_save($order);
-			uc_order_update_status($order->order_id, 'dragonpay_pending');
-			drupal_set_message(t("Please complete your payment inorder to complete the purchase."), 'error');
-			drupal_goto('user/'. $order->uid .'/orders');
-			break;
-	}
 }
 
 function uc_dragonpay_finalize() {
@@ -385,16 +390,16 @@ function _dragonpay_post_url($type = 'pay') {
     'live' => array(
       'pay' => DRAGONPAY_LIVE_URL . '/Pay.aspx',
       'bill'=> DRAGONPAY_LIVE_URL . '/SendBillingInfo.aspx'
-	)
+  )
   );
   
   return (variable_get('uc_dragonpay_demo', TRUE)) ? $urls['demo'][$type] : $urls['live'][$type];
 }
 
 function _dragonpay_set_transid($id){
-	$_SESSION['dragonpay_transid'] = variable_get('uc_dragonpay_prefix', 'WEB') . '_' . time() . '_' . $id;
+  $_SESSION['dragonpay_transid'] = variable_get('uc_dragonpay_prefix', 'WEB') . '_' . time() . '_' . $id;
 }
 
 function _dragonpay_get_transid(){
-	return $_SESSION['dragonpay_transid'];
+  return $_SESSION['dragonpay_transid'];
 }
