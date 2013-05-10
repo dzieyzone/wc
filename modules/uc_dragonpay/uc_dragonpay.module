@@ -222,15 +222,15 @@ function uc_dragonpay_complete($cart_id = 0) {
   
   if (isset($_GET['txnid'])){
     list(,,$txnid) = explode('_', check_plain($_GET['txnid']));
-  watchdog('uc_dragonpay',
-    t('Receiving new order notification for order !order_id, DragonPay transaction id:!dragonpaytransid.',
-      array('!order_id' => check_plain($txnid),
-        '!dragonpaytransid'=> check_plain($_GET['txnid'])
+    watchdog('uc_dragonpay',
+      t('Receiving new order notification for order !order_id, DragonPay transaction id:!dragonpaytransid.',
+        array('!order_id' => check_plain($txnid),
+          '!dragonpaytransid'=> check_plain($_GET['txnid'])
         )
       )
-  );
+    );
   }
-  
+
   //load order
   $order = uc_order_load(check_plain($txnid));
   //check if order exist or order is not in checkout
