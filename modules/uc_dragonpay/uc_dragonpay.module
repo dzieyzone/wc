@@ -236,7 +236,7 @@ function uc_dragonpay_complete($cart_id = 0) {
   //check if order exist or order is not in checkout
   if ($order === FALSE || 
       check_plain($_GET['status']) == 'f' || 
-      !in_array(uc_order_status_data($order->order_status, 'state'), array('in_checkout', 'dragonpay_pending')
+      !in_array(uc_order_status_data($order->order_status, 'state'), array('in_checkout', 'dragonpay_pending'))
      ){
     if (check_plain($_GET['status']) == 'f') {
       drupal_set_message(
