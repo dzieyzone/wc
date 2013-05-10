@@ -234,8 +234,11 @@ function uc_dragonpay_complete($cart_id = 0) {
   //load order
   $order = uc_order_load(check_plain($txnid));
   //check if order exist or order is not in checkout
-  if ( $order === FALSE || check_plain($_GET['result']) == 'failure' || uc_order_status_data($order->order_status, 'state') != 'in_checkout') {
-    if (check_plain($_GET['result']) == 'failure') {
+  if ($order === FALSE || 
+      check_plain($_GET['status']) == 'f' || 
+      !in_array(uc_order_status_data($order->order_status, 'state'), array('in_checkout', 'dragonpay_pending')
+     ){
+    if (check_plain($_GET['status']) == 'f') {
       drupal_set_message(
         t('An error has occurred during payment due to the following reason:') . t(check_plain($_GET['reason'])), 'error');
       //uc_order_update_status($order->order_id, 'dragonpay_checkout');
@@ -313,7 +316,7 @@ function uc_dragonpay_complete($cart_id = 0) {
         'v' => 'Void',
         'a' => 'Authorized',
       );
-      
+
       $comment = t(
         'DragonPay Reference Number: !refnum.',
         array('!refnum' => check_plain($_GET['refno']))
@@ -340,7 +343,7 @@ function uc_dragonpay_complete($cart_id = 0) {
           )
         );
       } 
-      
+
       uc_order_comment_save(
         $order->order_id,
         0,
