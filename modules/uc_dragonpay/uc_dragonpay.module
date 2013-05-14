@@ -231,18 +231,13 @@ function uc_dragonpay_complete($cart_id = 0) {
     );
   }
 
-  watchdog('uc_cart', print_r($_GET, TRUE), WATCHDOG_ERROR);
-
   //load order
   $order = uc_order_load(check_plain($txnid));
   //check if order exist or order is not in checkout
-  if ($order === FALSE || 
-      check_plain($_GET['status']) == 'f' || 
-      !in_array(uc_order_status_data($order->order_status, 'state'), array('in_checkout', 'dragonpay_pending'))
-     ){
+  if ($order === FALSE || check_plain($_GET['status']) == 'f'){
     if (check_plain($_GET['status']) == 'f') {
       drupal_set_message(
-        t('An error has occurred during payment due to the following reason:') . t(check_plain($_GET['reason'])), 'error');
+        t('An error has occurred during payment due to the following reason:') . t(check_plain($_GET['message'])), 'error');
       //uc_order_update_status($order->order_id, 'dragonpay_checkout');
     }
     else {
