@@ -248,7 +248,7 @@ function uc_dragonpay_complete($cart_id = 0) {
     //unset($_SESSION['cart_order']);
     drupal_goto('cart');
   }
-  
+
   //check the integrity of the message
   $params = array(
     'txnid' => '',
@@ -353,7 +353,7 @@ function uc_dragonpay_complete($cart_id = 0) {
         $order->order_id,
         0,
         $payment_msg,
-        'admin'
+        'order'
       );
       uc_cart_empty($txnid);// Empty that cart...
       uc_order_save($order);
