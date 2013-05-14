@@ -268,6 +268,14 @@ function uc_dragonpay_complete($cart_id = 0) {
 
   if ($chk_rdigest != check_plain($_GET['digest'])) {
     uc_order_comment_save($order->order_id, 0, t('Attempted unverified DragonPay completion for this order.'), 'admin');
+    watchdog('uc_dragonpay',
+      t('Params: !params \nDigest: !digest \ngetDigest: !getDigest',
+        array('!params' => print_r($params, TRUE),
+          '!digest' => $chk_rdigest,
+          '!getDigest'=> $_GET['txnid']
+        )
+      )
+    );
   }
   else {
     $dragonpay_result = (isset($_GET['status'])) ? strtolower(check_plain($_GET['status'])) : 'none';
