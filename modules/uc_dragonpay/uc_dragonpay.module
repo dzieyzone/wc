@@ -1,6 +1,6 @@
 <?php
 define('DRAGONPAY_TEST_URL', 'http://test.dragonpay.ph');
-define('DRAGON_LIVE_URL', 'https://secure.dragonpay.ph');
+define('DRAGONPAY_LIVE_URL', 'https://secure.dragonpay.ph');
 
 /*******************************************************************************
  * Hook Functions (Drupal)
