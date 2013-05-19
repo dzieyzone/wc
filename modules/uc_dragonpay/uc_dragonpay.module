@@ -301,6 +301,9 @@ function uc_dragonpay_complete($cart_id = 0) {
         uc_cart_empty($txnid);// Empty that cart...
         uc_order_save($order);// Save changes to order without it's completion (it will be on finalization step)
         $url = 'cart/dragonpay/finalize/'. $order->order_id; //only redirect if successful
+        drupal_goto($url);
+
+        /*
         $output = '<script type="text/javascript">window.location = "'. url($url) .'";</script>';// Javascript redirect on the finalization page.
         $output .= l(t('Click to complete checkout.'), $url);// Text link for users without Javascript enabled.
         while (strlen($output) < 255) {// DragonPay needs page larger than 255 characters to display.
@@ -308,6 +311,8 @@ function uc_dragonpay_complete($cart_id = 0) {
         }
         print $output;
         exit();
+        * 
+        */
       break;
       default:
     //case 'p': //pending status code goes here
@@ -334,6 +339,7 @@ function uc_dragonpay_complete($cart_id = 0) {
         $user_msg = t("Please complete your payment inorder to complete the purchase. <br /> Reference: !msg",
           array('!msg'=> check_plain($_GET['message']))
         );
+        $comment_type = 'order';
       }
       else {
         $payment_msg = t('Payment unsuccessful.\n Code: !code \nDetails: !detail',
