@@ -7,6 +7,6 @@
     print "<img src=\"$image_url\" />";
   }
   else {
-  	print '';
+    print '<img src="http://www.widgetcity.com.ph/sites/widgetcity.com.ph/files/widgetcity-logo-list.png" />';
   }
 ?>
